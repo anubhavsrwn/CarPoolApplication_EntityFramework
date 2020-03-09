@@ -56,5 +56,57 @@ namespace CarPoolApplication.Services
 
             
         }
+
+        public ICollection<TripRequest> ShowRequests(string username)
+        {
+            ICollection<TripRequest> trips = new Collection<TripRequest>();
+            using (var db = new UserContext())
+            {
+                trips = db.TripRequests
+                          .Where(trip => trip.TripCreater == username)
+                          .ToList();
+            }
+            return trips;
+        }
+
+        public void ApproveRequest(string requestId)
+        {
+            using (var db = new UserContext())
+            {
+                var tripRequest = db.TripRequests
+                                    .Where(trip => trip.RequestId == requestId)
+                                    .First();
+
+                string tripOfferId = tripRequest.TripId;
+                string passenger = tripRequest.TripPassenger;
+                TripOffer tripDetails = db.TripOffers.First(trip => trip.TripOfferId == tripOfferId);
+                tripDetails.SeatsLeft--;
+                tripDetails.SeatsOccupied++;
+                db.SaveChanges();
+                
+                db.TripBookings.Add(new TripBooking(tripDetails.TripOfferId, tripDetails.Date, tripDetails.Time, tripDetails.Source, tripDetails.Destination, tripDetails.Distance, tripDetails.CostPerHead, tripDetails.Username, passenger));
+                db.SaveChanges();
+
+
+                var req = db.TripRequests.First(request => request.RequestId == requestId);
+                db.TripRequests.Remove(req);
+                db.SaveChanges();
+
+
+            }
+        }
+
+        public ICollection<TripBooking> ShowTripBookings(string username)
+        {
+            ICollection<TripBooking> trips = new Collection<TripBooking>();
+            using (var db = new UserContext())
+            {
+                trips = db.TripBookings
+                          .Where(trip => trip.Username == username || trip.Passenger == username)
+                          .ToList();
+            }
+
+            return trips;
+        }
     }
 }

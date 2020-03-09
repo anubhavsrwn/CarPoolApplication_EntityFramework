@@ -109,11 +109,11 @@ namespace CarPoolApplication.UI
 
                                     foreach (TripOffer Trip in Trips)
                                     {
-                                        Console.WriteLine("\n\n" + Trip.TripOfferId + " | Driver : " + Trip.Username + " | " + Trip.Date + " | " + Trip.Time + " | " + Trip.Source + " to " + Trip.Destination + " | " + Trip.Distance + "kms | " + Trip.CarModel + " " + Trip.CarNumber + " | Total Seats : " + Trip.TotalSeats + " | Seats Left : " + Trip.SeatsLeft + " | Total Cost : " + Trip.TotalCost);
+                                        Console.WriteLine("\n\n" + Trip.TripOfferId + " | Driver : " + Trip.Username + " | " + Trip.Date + " | " + Trip.Time + " | " + Trip.Source + " to " + Trip.Destination + " | " + Trip.Distance + "kms | " + Trip.CarModel + " " + Trip.CarNumber + " | Total Seats : " + Trip.TotalSeats + " | Seats Left : " + Trip.SeatsLeft + " | Cost Per Head : " + Trip.CostPerHead);
                                     }
                                     Console.ReadKey();
 
-                                    Console.WriteLine("Enter the Trip ID for the trip you are intested in : ");
+                                    Console.WriteLine("\nEnter the Trip ID for the trip you are interested in : ");
                                     string tripOfferId = Console.ReadLine();
                                     TripServices.JoinRequest(username, tripOfferId);
                                     Console.WriteLine("Request Created!!");
@@ -141,13 +141,46 @@ namespace CarPoolApplication.UI
 
                                 }
                             case 4:
-                                goto UserMenu;
+                                {
+                                    ICollection<TripRequest> Trips = TripServices.ShowRequests(username);
+                                    if (Trips.Count == 0)
+                                    {
+                                        Console.WriteLine("NO REQUESTS FOUND!");
+                                        Console.ReadKey();
+                                        goto UserMenu;
+                                    }
+                                    foreach (var trip in Trips)
+                                    {
+                                        Console.WriteLine("\n" + trip.RequestId + " | Trip Creator : " + trip.TripCreater + " | for : " + trip.TripId + " | Requested Received from : " + trip.TripPassenger );
+                                    }
 
+                                    Console.WriteLine("\nEnter the Request ID for the request you want to approve: ");
+                                    string requestId = Console.ReadLine();
+                                    TripServices.ApproveRequest(requestId);
+                                    Console.WriteLine("Request Approved!!");
+                                    Console.ReadKey();
+                                    goto UserMenu;
 
+                                }
                             case 5:
-                                goto UserMenu;
+                                {
+                                    ICollection<TripBooking> Trips = TripServices.ShowTripBookings(username);
+                                    if (Trips.Count == 0)
+                                    {
+                                        Console.WriteLine("NO TRIPS FOUND!");
+                                        Console.ReadKey();
+                                        goto UserMenu;
+                                    }
 
+                                    foreach( var trip in Trips)
+                                    {
+                                        Console.WriteLine("\n" + trip.TripOfferId + " | Trip Creator : " + trip.Username + " | " + trip.Date + " | " + trip.Time + " | " + trip.Source + " to " + trip.Destination + " | " + trip.Distance + "kms | " + trip.CostPerHead + " INR" + " | Joined by " + trip.Passenger);
+                                    }
 
+                                    Console.ReadKey();
+                                    goto UserMenu;
+
+                                }
                             case 6:
                                 goto Menu;
 

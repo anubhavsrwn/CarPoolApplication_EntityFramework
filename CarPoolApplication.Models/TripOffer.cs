@@ -29,7 +29,7 @@ namespace CarPoolApplication.Models
         
         public TripOffer(string date, string time, string source, string destination, double distance, string carModel, string carNumber, int totalSeats, decimal totalCost, string username)
         {
-            TripOfferId = "TRIP" + DateTime.Now.ToString("mmss");
+            TripOfferId = "TRIPO" + DateTime.Now.ToString("mmss");
             this.Date = date;
             this.Time = time;
             this.Source = source;

@@ -12,7 +12,6 @@ namespace CarPoolApplication.UI
         static void Main(string[] args)
         {
             MainMenu();
-            
         }
 
         private static void MainMenu()
@@ -57,7 +56,7 @@ namespace CarPoolApplication.UI
         private static void UserMenu(string username)
         {
             Console.Clear();
-            Console.WriteLine("Logged in as " + username);
+            Console.WriteLine($"Logged in as  {username}");
             Console.WriteLine("User Menu : ");
             Console.WriteLine("1. Create a Trip Offer.");
             Console.WriteLine("2. Search for a Trip.");
@@ -90,7 +89,7 @@ namespace CarPoolApplication.UI
 
                         foreach (TripOffer Trip in Trips)
                         {
-                            Console.WriteLine("\n\n" + Trip.TripOfferId + " | Driver : " + Trip.Username + " | " + Trip.Date + " | " + Trip.Time + " | " + Trip.Source + " to " + Trip.Destination + " | " + Trip.Distance + "kms | " + Trip.CarModel + " " + Trip.CarNumber + " | Total Seats : " + Trip.TotalSeats + " | Seats Left : " + Trip.SeatsLeft + " | Total Cost : " + Trip.TotalCost);
+                            Console.WriteLine($"\n\n {Trip.TripOfferId} | Driver : { Trip.Username } | { Trip.Date } | { Trip.Time } | { Trip.Source } to { Trip.Destination } | { Trip.Distance }kms | { Trip.CarModel } { Trip.CarNumber } | Total Seats : { Trip.TotalSeats } | Seats Left : { Trip.SeatsLeft } | Total Cost : { Trip.TotalCost}");
                         }
                         Console.ReadKey();
                         UserMenu(username);
@@ -128,7 +127,7 @@ namespace CarPoolApplication.UI
 
             foreach (var trip in Trips)
             {
-                Console.WriteLine("\n" + trip.TripOfferId + " | Trip Creator : " + trip.Username + " | " + trip.Date + " | " + trip.Time + " | " + trip.Source + " to " + trip.Destination + " | " + trip.Distance + "kms | " + trip.CostPerHead + " INR" + " | Joined by " + trip.Passenger);
+                Console.WriteLine($"\n {trip.TripOfferId}  | Trip Creator : {trip.Username} | { trip.Date } | { trip.Time } | { trip.Source } to { trip.Destination } | { trip.Distance }kms | { trip.CostPerHead } INR | Joined by { trip.Passenger }");
             }
 
             Console.ReadKey();
@@ -147,7 +146,7 @@ namespace CarPoolApplication.UI
             }
             foreach (var trip in Trips)
             {
-                Console.WriteLine("\n" + trip.RequestId + " | Trip Creator : " + trip.TripCreater + " | for : " + trip.TripOfferId + " | Requested Received from : " + trip.TripPassenger );
+                Console.WriteLine($"\n {trip.RequestId} | Trip Creator : { trip.TripCreater } | for : { trip.TripOfferId } | Requested Received from : { trip.TripPassenger }");
             }
             Console.WriteLine("\nEnter the Request ID for the request you want to approve: ");
             string requestId = Console.ReadLine();
@@ -200,7 +199,7 @@ namespace CarPoolApplication.UI
             Console.WriteLine("Enter User Name : ");
             username = Console.ReadLine();
 
-           
+
             if (UserServices.ValidateUserName(username) == false)
             {
                 Console.WriteLine("Username Already Exists!!");
@@ -208,13 +207,13 @@ namespace CarPoolApplication.UI
                 Console.ReadKey();
                 return;
             }
-            
+
             Console.WriteLine("Enter Password : ");
             password = Console.ReadLine();
 
             UserServices.AddUser(username, password);
         }
-    
+
         private static void CreateTripOffer(string username)
         {
             string date;

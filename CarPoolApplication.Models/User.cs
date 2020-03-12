@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarPoolApplication.Models
 {
     public class User
     {
         [Key]
+        [Column("User ID")]
         public string Username { get; set; }
         public string Password { get; set; }
 

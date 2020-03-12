@@ -24,9 +24,9 @@ namespace CarPoolApplication.Models
         public string  CarNumber { get; set; }
 
         public string Username { get; set; }
-        
-        
-        
+
+        public ICollection<TripRequest> TripRequests { get; set; } = new Collection<TripRequest>();
+
         public TripOffer(string date, string time, string source, string destination, double distance, string carModel, string carNumber, int totalSeats, decimal totalCost, string username)
         {
             TripOfferId = "TRIPO" + DateTime.Now.ToString("mmss");

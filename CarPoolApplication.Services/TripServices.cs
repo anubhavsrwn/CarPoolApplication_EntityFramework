@@ -42,7 +42,7 @@ namespace CarPoolApplication.Services
             return trips;
         }
 
-        public void JoinRequest(string username, string tripOfferId)
+        public void JoinTripRequest(string username, string tripOfferId)
         {
             using (var db = new UserContext())
             {
@@ -57,7 +57,7 @@ namespace CarPoolApplication.Services
             
         }
 
-        public ICollection<TripRequest> ShowRequests(string username)
+        public ICollection<TripRequest> ShowTripJoiningRequests(string username)
         {
             ICollection<TripRequest> trips = new Collection<TripRequest>();
             using (var db = new UserContext())
@@ -69,7 +69,7 @@ namespace CarPoolApplication.Services
             return trips;
         }
 
-        public void ApproveRequest(string requestId)
+        public void ApproveTripJoinRequest(string requestId)
         {
             using (var db = new UserContext())
             {
@@ -77,7 +77,7 @@ namespace CarPoolApplication.Services
                                     .Where(trip => trip.RequestId == requestId)
                                     .First();
 
-                string tripOfferId = tripRequest.TripId;
+                string tripOfferId = tripRequest.TripOfferId;
                 string passenger = tripRequest.TripPassenger;
                 TripOffer tripDetails = db.TripOffers.First(trip => trip.TripOfferId == tripOfferId);
                 tripDetails.SeatsLeft--;

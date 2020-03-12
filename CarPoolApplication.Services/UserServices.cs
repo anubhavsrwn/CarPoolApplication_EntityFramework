@@ -4,6 +4,7 @@ namespace CarPoolApplication.Services
 {
     public class UserServices
     {
+        public UserServices() { }
         public bool ValidateUserName(string username)
         {
             using (var db = new UserContext())

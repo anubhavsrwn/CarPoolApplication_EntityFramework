@@ -11,7 +11,7 @@ namespace CarPoolApplication.Models
         public string RequestId { get; set; }
         public string TripCreater { get; set; }
         public string TripPassenger { get; set; }
-        public string TripId { get; set; }
+        public string TripOfferId { get; set; }
 
 
         public TripRequest() { }
@@ -20,7 +20,7 @@ namespace CarPoolApplication.Models
         {
             TripCreater = tripCreater;
             TripPassenger = tripPassenger;
-            TripId = tripId;
+            TripOfferId = tripId;
             RequestId = "REQ" + DateTime.Now.ToString("mmss");
         }
     }

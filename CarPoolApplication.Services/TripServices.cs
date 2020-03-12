@@ -54,7 +54,6 @@ namespace CarPoolApplication.Services
                 db.SaveChanges();
             }
 
-            
         }
 
         public ICollection<TripRequest> ShowTripJoiningRequests(string username)

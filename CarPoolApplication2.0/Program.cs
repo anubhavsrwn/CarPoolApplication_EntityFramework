@@ -179,7 +179,7 @@ namespace CarPoolApplication.UI
 
             foreach (TripOffer Trip in Trips)
             {
-                Console.WriteLine("\n\n" + Trip.TripOfferId + " | Driver : " + Trip.Username + " | " + Trip.Date + " | " + Trip.Time + " | " + Trip.Source + " to " + Trip.Destination + " | " + Trip.Distance + "kms | " + Trip.CarModel + " " + Trip.CarNumber + " | Total Seats : " + Trip.TotalSeats + " | Seats Left : " + Trip.SeatsLeft + " | Cost Per Head : " + Trip.CostPerHead);
+                Console.WriteLine($"\n\n { Trip.TripOfferId}  | Driver : {Trip.Username} | {Trip.Date } | { Trip.Time } | { Trip.Source } to { Trip.Destination } | { Trip.Distance }kms | { Trip.CarModel } { Trip.CarNumber } | Total Seats : { Trip.TotalSeats } | Seats Left : { Trip.SeatsLeft } | Cost Per Head : { Trip.CostPerHead}");
             }
             Console.ReadKey();
 

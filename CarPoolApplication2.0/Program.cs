@@ -7,14 +7,15 @@ namespace CarPoolApplication.UI
 {
     class Program
     {
-        static UserServices UserServices = new UserServices();
-        static TripServices TripServices = new TripServices();
-        static void Main(string[] args)
+        UserServices UserServices = new UserServices();
+        TripServices TripServices = new TripServices();
+        
+         void Main(string[] args)
         {
             MainMenu();
         }
 
-        private static void MainMenu()
+        public void MainMenu()
         {
             Console.Clear();
             Console.WriteLine("Main Menu : ");
@@ -53,7 +54,7 @@ namespace CarPoolApplication.UI
             }
         }
 
-        private static void UserMenu(string username)
+        public void UserMenu(string username)
         {
             Console.Clear();
             Console.WriteLine($"Logged in as  {username}");
@@ -115,7 +116,7 @@ namespace CarPoolApplication.UI
             }
         }
 
-        private static void ShowTripBooking(string username)
+        public void ShowTripBooking(string username)
         {
             ICollection<TripBooking> Trips = TripServices.ShowTripBookings(username);
             if (Trips.Count == 0)
@@ -135,7 +136,7 @@ namespace CarPoolApplication.UI
 
         }
 
-        private static void ApproveTripRequests(string username)
+        public void ApproveTripRequests(string username)
         {
             ICollection<TripRequest> Trips = TripServices.ShowTripJoiningRequests(username);
             if (Trips.Count == 0)
@@ -156,7 +157,7 @@ namespace CarPoolApplication.UI
             UserMenu(username);
         }
 
-        private static void SearchTripOffers(string username)
+        public void SearchTripOffers(string username)
         {
             string date;
             string source;
@@ -191,7 +192,7 @@ namespace CarPoolApplication.UI
 
         }
 
-        private static void SignUp()
+        public void SignUp()
         {
             Console.Clear();
             string username;
@@ -214,7 +215,7 @@ namespace CarPoolApplication.UI
             UserServices.AddUser(username, password);
         }
 
-        private static void CreateTripOffer(string username)
+        public void CreateTripOffer(string username)
         {
             string date;
             string time;

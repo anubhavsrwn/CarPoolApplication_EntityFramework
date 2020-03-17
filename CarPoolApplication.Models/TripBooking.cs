@@ -19,6 +19,8 @@ namespace CarPoolApplication.Models
         public string Passenger { get; set; }
         public string Username { get; set; }
         public TripBooking() {}
+        
+        
         public TripBooking(string tripOfferId, string date, string time, string source, string destination, double distance, decimal costPerHead, string username, string passenger)
         {
             TripBookingId = "TRIPB" + DateTime.Now.ToString("mmss");

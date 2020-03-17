@@ -27,7 +27,7 @@ namespace CarPoolApplication.Services
                 db.SaveChanges();
             }
         }
-
+         
         public bool ValidateUser(string username, string password)
         {
             using (var db = new UserContext())

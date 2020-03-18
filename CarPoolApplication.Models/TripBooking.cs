@@ -18,6 +18,8 @@ namespace CarPoolApplication.Models
         public decimal CostPerHead { get; set; }
         public string Passenger { get; set; }
         public string Username { get; set; }
+        
+        
         public TripBooking() {}
         
         

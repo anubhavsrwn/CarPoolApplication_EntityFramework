@@ -20,8 +20,10 @@ namespace CarPoolApplication.Services
         public ICollection<TripOffer> SearchTrip(string date, string source, string destination)
         {
             ICollection<TripOffer> trips = new Collection<TripOffer>();
+            
             using (var db = new UserContext())
             {
+
                 trips = db.TripOffers
                           .Where(trip => trip.Date == date && trip.Source == source && trip.Destination == destination)
                           .ToList();
@@ -34,7 +36,8 @@ namespace CarPoolApplication.Services
         {
             ICollection<TripOffer> trips = new Collection<TripOffer>();
             using (var db = new UserContext())
-            {
+            { 
+
                 trips = db.TripOffers
                           .Where(trip => trip.Username == username)
                           .ToList();
@@ -47,8 +50,8 @@ namespace CarPoolApplication.Services
             using (var db = new UserContext())
             {
                 TripOffer tripOffer = db.TripOffers
-                             .Where(trip => trip.TripOfferId == tripOfferId)
-                             .FirstOrDefault();
+                                        .FirstOrDefault(trip => trip.TripOfferId == tripOfferId);
+                             
 
                 db.TripRequests.Add(new TripRequest(tripOffer.Username, username, tripOffer.TripOfferId));
                 db.SaveChanges();
@@ -73,8 +76,7 @@ namespace CarPoolApplication.Services
             using (var db = new UserContext())
             {
                 var tripRequest = db.TripRequests
-                                    .Where(trip => trip.RequestId == requestId)
-                                    .First();
+                                    .First(trip => trip.RequestId == requestId);
 
                 string tripOfferId = tripRequest.TripOfferId;
                 string passenger = tripRequest.TripPassenger;

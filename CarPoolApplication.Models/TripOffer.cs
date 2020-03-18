@@ -22,10 +22,9 @@ namespace CarPoolApplication.Models
         public decimal CostPerHead { get; set; }
         public string CarModel { get; set; }
         public string  CarNumber { get; set; }
-
         public string Username { get; set; }
-
         public ICollection<TripRequest> TripRequests { get; set; } = new Collection<TripRequest>();
+
 
         public TripOffer(string date, string time, string source, string destination, double distance, string carModel, string carNumber, int totalSeats, decimal totalCost, string username)
         {
